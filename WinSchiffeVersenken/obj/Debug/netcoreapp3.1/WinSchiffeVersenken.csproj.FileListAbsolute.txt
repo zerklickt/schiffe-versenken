@@ -1,0 +1,16 @@
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\bin\Debug\netcoreapp3.1\WinSchiffeVersenken.exe
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\bin\Debug\netcoreapp3.1\WinSchiffeVersenken.deps.json
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\bin\Debug\netcoreapp3.1\WinSchiffeVersenken.runtimeconfig.json
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\bin\Debug\netcoreapp3.1\WinSchiffeVersenken.runtimeconfig.dev.json
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\bin\Debug\netcoreapp3.1\WinSchiffeVersenken.dll
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\bin\Debug\netcoreapp3.1\WinSchiffeVersenken.pdb
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.csproj.AssemblyReference.cache
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.Form1.resources
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.csproj.GenerateResource.cache
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.GeneratedMSBuildEditorConfig.editorconfig
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.AssemblyInfoInputs.cache
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.AssemblyInfo.cs
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.csproj.CoreCompileInputs.cache
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.dll
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.pdb
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.genruntimeconfig.cache
