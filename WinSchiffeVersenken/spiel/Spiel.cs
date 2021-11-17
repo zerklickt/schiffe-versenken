@@ -6,6 +6,7 @@
         private User me;
         private Spielfeld sf;
 
+        private bool myTurn;
 
         public Spiel(User me, User opponent)
         {
@@ -22,6 +23,11 @@
         public Spielfeld GetSpielfeld()
         {
             return sf;
+        }
+
+        public User getOpponent()
+        {
+            return opponent;
         }
     }
 }
