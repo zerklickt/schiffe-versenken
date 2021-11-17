@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace WinSchiffeVersenken
 {
     class Feld : Button
     {
 
-        private int status, x, y, shipID;
-        public Feld(int x, int y, int status = (int) Status.DEFAULT, int shipID = -1)
+        private int x, y, shipID;
+        private Status status;
+
+        public Feld(int x, int y, Status status = Status.DEFAULT, int shipID = -1)
         {
             this.x = x;
             this.y = y;
@@ -22,13 +16,36 @@ namespace WinSchiffeVersenken
             this.shipID = shipID;
         }
 
-        public int getStatus()
+        public int getStatusInt()
         {
-            
+            return (int) this.status;
+        }
+
+        public Status getStatus()
+        {
             return this.status;
         }
 
         public void setStatus(int status)
+        {
+            switch (status)
+            {
+                case 1:
+                    this.status = Status.MISS;
+                    break;
+                case 2:
+                    this.status = Status.HIT;
+                    break;
+                case 3:
+                    this.status = Status.SUNK;
+                    break;
+                default:
+                    this.status = Status.DEFAULT;
+                    break;
+            }
+        }
+
+        public void setStatus(Status status)
         {
             this.status = status;
         }

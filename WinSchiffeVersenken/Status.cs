@@ -6,6 +6,6 @@ namespace WinSchiffeVersenken
 {
     enum Status
     {
-        DEFAULT = 0, HIT = 1, MISS = 2
+        DEFAULT = 0, MISS = 1, HIT = 2, SUNK = 3
     }
 }

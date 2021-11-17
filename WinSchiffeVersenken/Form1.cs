@@ -1,32 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinSchiffeVersenken
 {
     public partial class Form1 : Form
     {
+        public int x = 0, y = 0;
 
         private Spiel sp;
         private User me;
+
         public Form1()
         {
             InitializeComponent();
-            _x1y1.setShipID(0);
-            
             me = new User("testuser", "password");
             sp = new Spiel(me, new User("testuser2", "passwort2"));
-            me.addShip(new Schiffe(3));
         }
-
-        public int x = 0, y = 0;
-        int[,] schiff = new int[4, 4];
 
         private void textBox9_TextChanged(object sender, EventArgs e)
         {
@@ -44,9 +34,6 @@ namespace WinSchiffeVersenken
                 y = Convert.ToInt32(textBox10.Text);
             }
             catch { }
-
-            schiff[1, 2] = 1;
-            schiff[1, 3] = 1;
 
             if (x == 1 && y == 1)
             {
@@ -118,7 +105,7 @@ namespace WinSchiffeVersenken
         {
             x = 1;
             y = 1;
-            checkClick(_x1y1);
+            sp.GetSpielfeld().checkClick(_x1y1);
             
         }
 
@@ -126,28 +113,28 @@ namespace WinSchiffeVersenken
         {
             x = 2;
             y = 1;
-            checkClick(_x2y1);
+            sp.GetSpielfeld().checkClick(_x2y1);
         }
 
         private void _x3y1_Click(object sender, EventArgs e)
         {
             x = 3;
             y = 1;
-            checkClick(_x3y1);
+            sp.GetSpielfeld().checkClick(_x3y1);
         }
 
         private void _x4y1_Click(object sender, EventArgs e)
         {
             x = 4;
             y = 1;
-            checkClick(_x4y1);
+            sp.GetSpielfeld().checkClick(_x4y1);
         }
 
         private void _x1y2_Click(object sender, EventArgs e)
         {
             x = 1;
             y = 2;
-            checkClick(_x1y2);
+            sp.GetSpielfeld().checkClick(_x1y2);
         }
 
         private void _x2y2_Click(object sender, EventArgs e)
@@ -155,77 +142,77 @@ namespace WinSchiffeVersenken
             
             x = 2;
             y = 2;
-            checkClick(_x2y2);
+            sp.GetSpielfeld().checkClick(_x2y2);
         }
 
         private void _x3y2_Click(object sender, EventArgs e)
         {
             x = 3;
             y = 2;
-            checkClick(_x3y2);
+            sp.GetSpielfeld().checkClick(_x3y2);
         }
 
         private void _x4y2_Click(object sender, EventArgs e)
         {
             x = 4;
             y = 2;
-            checkClick(_x4y2);
+            sp.GetSpielfeld().checkClick(_x4y2);
         }
 
         private void _x1y3_Click(object sender, EventArgs e)
         {
             x = 1;
             y = 3;
-            checkClick(_x1y3);
+            sp.GetSpielfeld().checkClick(_x1y3);
         }
 
         private void _x2y3_Click(object sender, EventArgs e)
         {
             x = 2;
             y = 3;
-            checkClick(_x2y3);
+            sp.GetSpielfeld().checkClick(_x2y3);
         }
 
         private void _x3y3_Click(object sender, EventArgs e)
         {
             x = 3;
             y = 3;
-            checkClick(_x3y3);
+            sp.GetSpielfeld().checkClick(_x3y3);
         }
 
         private void _x4y3_Click(object sender, EventArgs e)
         {
             x = 4;
             y = 3;
-            checkClick(_x4y3);
+            sp.GetSpielfeld().checkClick(_x4y3);
         }
 
         private void _x1y4_Click(object sender, EventArgs e)
         {
             x = 1;
             y = 4;
-            checkClick(_x1y4);
+            sp.GetSpielfeld().checkClick(_x1y4);
         }
 
         private void _x2y4_Click(object sender, EventArgs e)
         {
             x = 2;
             y = 4;
-            checkClick(_x2y4);
+            sp.GetSpielfeld().checkClick(_x2y4);
         }
 
         private void _x3y4_Click(object sender, EventArgs e)
         {
             x = 3;
             y = 4;
-            checkClick(_x3y4);
+            sp.GetSpielfeld().checkClick(_x3y4);
         }
 
         private void _x4y4_Click(object sender, EventArgs e)
         {
             x = 4;
             y = 4;
-            checkClick(_x4y4);
+            sp.GetSpielfeld().checkClick(_x4y4);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -233,27 +220,7 @@ namespace WinSchiffeVersenken
 
         }
 
-        private void checkClick(Feld feld)
-        {
-            if (feld.getShipID() != -1)
-            {
-                Schiffe s = me.getShips()[feld.getShipID()];
-                s.getroffen();
-                s.istversenktfunct();
-                if (s.istversenkt())
-                {
-                    feld.BackColor = Color.Red;
-                } else
-                {
-                    feld.BackColor = Color.LightSalmon;
-                }
-            }
-            else
-            {
-                feld.BackColor = Color.Blue;
-            }
-            feld.Enabled = false;
-        }
+        
 
     }
 }
