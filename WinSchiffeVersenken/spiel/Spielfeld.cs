@@ -7,7 +7,6 @@ namespace WinSchiffeVersenken
     class Spielfeld
     {
         private int size;
-        private Schiffe[] ships;
         private Feld[][] buttons;
 
         public Spielfeld()

@@ -126,35 +126,28 @@ namespace WinSchiffeVersenken
         {
             x = 2;
             y = 1;
-            if (_x2y1.getShipID() != -1)
-            {
-                _x2y1.BackColor = Color.Red;
-            }
-            else
-            {
-                _x2y1.BackColor = Color.Blue;
-            }
+            checkClick(_x2y1);
         }
 
         private void _x3y1_Click(object sender, EventArgs e)
         {
             x = 3;
             y = 1;
-            _x3y1.BackColor = Color.Blue;
+            checkClick(_x3y1);
         }
 
         private void _x4y1_Click(object sender, EventArgs e)
         {
             x = 4;
             y = 1;
-            _x4y1.BackColor = Color.Blue;
+            checkClick(_x4y1);
         }
 
         private void _x1y2_Click(object sender, EventArgs e)
         {
             x = 1;
             y = 2;
-            _x1y2.BackColor = Color.Blue;
+            checkClick(_x1y2);
         }
 
         private void _x2y2_Click(object sender, EventArgs e)
@@ -162,85 +155,77 @@ namespace WinSchiffeVersenken
             
             x = 2;
             y = 2;
-            _x2y2.BackColor = Color.Blue;
+            checkClick(_x2y2);
         }
 
         private void _x3y2_Click(object sender, EventArgs e)
         {
             x = 3;
             y = 2;
-            _x3y2.BackColor = Color.Blue;
+            checkClick(_x3y2);
         }
 
         private void _x4y2_Click(object sender, EventArgs e)
         {
             x = 4;
             y = 2;
-            _x4y2.BackColor = Color.Blue;
+            checkClick(_x4y2);
         }
 
         private void _x1y3_Click(object sender, EventArgs e)
         {
             x = 1;
             y = 3;
-            _x1y3.BackColor = Color.Blue;
+            checkClick(_x1y3);
         }
 
         private void _x2y3_Click(object sender, EventArgs e)
         {
             x = 2;
             y = 3;
-            _x2y3.BackColor = Color.Blue;
-            if (schiff[1, 2] == 1)
-            {
-                _x2y3.BackColor = Color.Red;
-            }
+            checkClick(_x2y3);
         }
 
         private void _x3y3_Click(object sender, EventArgs e)
         {
             x = 3;
             y = 3;
-            _x3y3.BackColor = Color.Blue;
+            checkClick(_x3y3);
         }
 
         private void _x4y3_Click(object sender, EventArgs e)
         {
             x = 4;
             y = 3;
-            _x4y3.BackColor = Color.Blue;
+            checkClick(_x4y3);
         }
 
         private void _x1y4_Click(object sender, EventArgs e)
         {
             x = 1;
             y = 4;
-            _x1y4.BackColor = Color.Blue;
+            checkClick(_x1y4);
         }
 
         private void _x2y4_Click(object sender, EventArgs e)
         {
             x = 2;
             y = 4;
-            _x2y4.BackColor = Color.Blue;
-            if (schiff[1, 3] == 1)
-            {
-                _x2y4.BackColor = Color.Red;
-            }
+            checkClick(_x2y4);
         }
 
         private void _x3y4_Click(object sender, EventArgs e)
         {
             x = 3;
             y = 4;
-            _x3y4.BackColor = Color.Blue;
+            checkClick(_x3y4);
         }
 
         private void _x4y4_Click(object sender, EventArgs e)
         {
             x = 4;
             y = 4;
-            _x4y4.BackColor = Color.Blue;
+            checkClick(_x4y4);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
