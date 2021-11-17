@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WinSchiffeversenken;
 
 namespace WinSchiffeVersenken
 {
     class Spielfeld
     {
         private int size;
-        private Schiff[] ships;
+        private Schiffe[] ships;
         private Feld[][] buttons;
 
         public Spielfeld()
