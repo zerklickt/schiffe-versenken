@@ -12,7 +12,27 @@ namespace WinSchiffeVersenken
 
         public Form1()
         {
+
+            /*
+             * 
+             * ==============================================================================================================
+             * WENN PROGRAMM NICHT ORDNUNGSGEMÄSS STARTET (BZW. AUSSIEHT), FOLGENDES TUN:
+             * 
+             *                                                                      / /
+             *      //InitializeComponent()                                    _   / /
+             *      privateInit()                                             | | / /
+             *                                                                | |__/__
+             *                                                                |_______|
+             * ==============================================================================================================
+             * #niceASCIIart ich weiss danke
+             */
+
             InitializeComponent();
+            //privateInit();
+
+            /*
+             * ==============================================================================================================
+             */
             me = new User("testuser", "password");
             sp = new Spiel(me, new User("testuser2", "passwort2"));
         }
@@ -33,7 +53,8 @@ namespace WinSchiffeVersenken
                 y = Convert.ToInt32(textBox10.Text);
             }
             catch { }
-
+            this.pictureBoxes[x-1, y-1].BackColor = Color.Black;
+            /*
             if (x == 1 && y == 1)
             {
                 x1y1.BackColor = Color.Black;
@@ -98,6 +119,7 @@ namespace WinSchiffeVersenken
             {
                 x4y4.BackColor = Color.Black;
             }
+            */
         }
 
         private void btnClick(object sender, EventArgs e)
@@ -105,11 +127,17 @@ namespace WinSchiffeVersenken
             sp.GetSpielfeld().checkClick((Feld) sender);
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pBoxClick(object sender, EventArgs e)
         {
 
         }
 
+        /*
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+        */
         
 
     }
