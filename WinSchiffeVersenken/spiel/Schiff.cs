@@ -40,6 +40,11 @@
             return versenkt;
         }
 
+        public int getAnzahl()
+        {
+            return anz.anzahl;
+        }
+
         public void istversenktfunct()
         {
             {

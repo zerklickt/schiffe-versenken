@@ -3,6 +3,7 @@ namespace WinSchiffeVersenken
 {
     partial class Form1
     {
+
         /// <summary>
         /// Erforderliche Designervariable.
         /// </summary>
@@ -58,6 +59,7 @@ namespace WinSchiffeVersenken
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            /*
             this._x1y1 = new Feld(1, 1);
             this._x2y1 = new Feld(2, 1);
             this._x3y1 = new Feld(3, 1);
@@ -74,6 +76,15 @@ namespace WinSchiffeVersenken
             this._x3y4 = new Feld(2, 4);
             this._x2y4 = new Feld(3, 4);
             this._x1y4 = new Feld(4, 4);
+            */
+            Form1.buttons = new Feld[4, 4];
+            for(int x = 0; x < 4; x++)
+            {
+                for(int y = 0; y < 4; y++)
+                {
+                    Form1.buttons[x, y] = new Feld(x, y);
+                }
+            }
             this.button2 = new System.Windows.Forms.Button();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox14 = new System.Windows.Forms.TextBox();
@@ -369,6 +380,23 @@ namespace WinSchiffeVersenken
             this.button1.Text = "platzieren";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+
+            int i = 0;
+            for(int x = 0; x < 4; x++)
+            {
+                for(int y = 0; y < 4; y++)
+                {
+                    Form1.buttons[x, y].Location = new System.Drawing.Point(635 + x * 55, 75 + y * 53);
+                    Form1.buttons[x, y].Name = "_x" + (x+1) + "y" + (y+1);
+                    Form1.buttons[x, y].Size = new System.Drawing.Size(49, 47);
+                    Form1.buttons[x, y].TabIndex = 30 + i;
+                    Form1.buttons[x, y].Text = "button2";
+                    Form1.buttons[x, y].UseVisualStyleBackColor = true;
+                    Form1.buttons[x, y].Click += new System.EventHandler(this.btnClick);
+                    i++;
+                }
+            }
+            /*
             // 
             // _x1y1
             // 
@@ -529,6 +557,7 @@ namespace WinSchiffeVersenken
             this._x1y4.Text = "button17";
             this._x1y4.UseVisualStyleBackColor = true;
             this._x1y4.Click += new System.EventHandler(this._x1y4_Click);
+            */
             // 
             // textBox13
             // 
@@ -636,6 +665,12 @@ namespace WinSchiffeVersenken
             this.Controls.Add(this.textBox14);
             this.Controls.Add(this.textBox15);
             this.Controls.Add(this.textBox16);
+
+            foreach(Feld btn in Form1.buttons)
+            {
+                this.Controls.Add(btn);
+            }
+            /*
             this.Controls.Add(this._x4y4);
             this.Controls.Add(this._x3y4);
             this.Controls.Add(this._x2y4);
@@ -652,6 +687,7 @@ namespace WinSchiffeVersenken
             this.Controls.Add(this._x3y1);
             this.Controls.Add(this._x2y1);
             this.Controls.Add(this._x1y1);
+            */
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.textBox11);
@@ -735,6 +771,7 @@ namespace WinSchiffeVersenken
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Button button1;
+        /*
         private Feld _x1y1;
         private Feld _x1y2;
         private Feld _x2y1;
@@ -751,6 +788,8 @@ namespace WinSchiffeVersenken
         private Feld _x3y4;
         private Feld _x2y4;
         private Feld _x1y4;
+        */
+        private static Feld[,] buttons;
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.TextBox textBox15;
@@ -760,5 +799,12 @@ namespace WinSchiffeVersenken
         private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.TextBox textBox20;
         private System.Windows.Forms.Button button2;
+
+
+        internal static Feld[,] getButtons()
+        {
+            return buttons;
+        }
+        
     }
 }

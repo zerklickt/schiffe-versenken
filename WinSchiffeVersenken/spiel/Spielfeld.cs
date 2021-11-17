@@ -6,14 +6,14 @@ namespace WinSchiffeVersenken
     {
         Spiel sp;
         private int size;
-        private Feld[][] buttons;
+        private Feld[,] buttons;
 
         public Spielfeld(Spiel sp)
         {
             this.sp = sp;
         }
 
-        public Feld[][] getButtons()
+        public Feld[,] getButtons()
         {
             return buttons;
         }

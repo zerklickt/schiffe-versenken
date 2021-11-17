@@ -7,7 +7,6 @@ namespace WinSchiffeVersenken
     public partial class Form1 : Form
     {
         public int x = 0, y = 0;
-
         private Spiel sp;
         private User me;
 
@@ -101,118 +100,9 @@ namespace WinSchiffeVersenken
             }
         }
 
-        private void _x1y1_Click(object sender, EventArgs e)
+        private void btnClick(object sender, EventArgs e)
         {
-            x = 1;
-            y = 1;
-            sp.GetSpielfeld().checkClick(_x1y1);
-            
-        }
-
-        private void _x2y1_Click(object sender, EventArgs e)
-        {
-            x = 2;
-            y = 1;
-            sp.GetSpielfeld().checkClick(_x2y1);
-        }
-
-        private void _x3y1_Click(object sender, EventArgs e)
-        {
-            x = 3;
-            y = 1;
-            sp.GetSpielfeld().checkClick(_x3y1);
-        }
-
-        private void _x4y1_Click(object sender, EventArgs e)
-        {
-            x = 4;
-            y = 1;
-            sp.GetSpielfeld().checkClick(_x4y1);
-        }
-
-        private void _x1y2_Click(object sender, EventArgs e)
-        {
-            x = 1;
-            y = 2;
-            sp.GetSpielfeld().checkClick(_x1y2);
-        }
-
-        private void _x2y2_Click(object sender, EventArgs e)
-        {
-            
-            x = 2;
-            y = 2;
-            sp.GetSpielfeld().checkClick(_x2y2);
-        }
-
-        private void _x3y2_Click(object sender, EventArgs e)
-        {
-            x = 3;
-            y = 2;
-            sp.GetSpielfeld().checkClick(_x3y2);
-        }
-
-        private void _x4y2_Click(object sender, EventArgs e)
-        {
-            x = 4;
-            y = 2;
-            sp.GetSpielfeld().checkClick(_x4y2);
-        }
-
-        private void _x1y3_Click(object sender, EventArgs e)
-        {
-            x = 1;
-            y = 3;
-            sp.GetSpielfeld().checkClick(_x1y3);
-        }
-
-        private void _x2y3_Click(object sender, EventArgs e)
-        {
-            x = 2;
-            y = 3;
-            sp.GetSpielfeld().checkClick(_x2y3);
-        }
-
-        private void _x3y3_Click(object sender, EventArgs e)
-        {
-            x = 3;
-            y = 3;
-            sp.GetSpielfeld().checkClick(_x3y3);
-        }
-
-        private void _x4y3_Click(object sender, EventArgs e)
-        {
-            x = 4;
-            y = 3;
-            sp.GetSpielfeld().checkClick(_x4y3);
-        }
-
-        private void _x1y4_Click(object sender, EventArgs e)
-        {
-            x = 1;
-            y = 4;
-            sp.GetSpielfeld().checkClick(_x1y4);
-        }
-
-        private void _x2y4_Click(object sender, EventArgs e)
-        {
-            x = 2;
-            y = 4;
-            sp.GetSpielfeld().checkClick(_x2y4);
-        }
-
-        private void _x3y4_Click(object sender, EventArgs e)
-        {
-            x = 3;
-            y = 4;
-            sp.GetSpielfeld().checkClick(_x3y4);
-        }
-
-        private void _x4y4_Click(object sender, EventArgs e)
-        {
-            x = 4;
-            y = 4;
-            sp.GetSpielfeld().checkClick(_x4y4);
+            sp.GetSpielfeld().checkClick((Feld) sender);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
