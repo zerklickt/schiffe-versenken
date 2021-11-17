@@ -267,6 +267,7 @@ namespace WinSchiffeVersenken
             {
                 feld.BackColor = Color.Blue;
             }
+            feld.Enabled = false;
         }
 
     }
