@@ -12,12 +12,17 @@ namespace WinSchiffeVersenken
 {
     public partial class Form1 : Form
     {
+
+        private Spiel sp;
+        private User me;
         public Form1()
         {
             InitializeComponent();
-            //schiff[2, 3] = 1;
-            //schiff[2, 4] = 1;
-            _x1y1.setShipID(3);
+            _x1y1.setShipID(0);
+            
+            me = new User("testuser", "password");
+            sp = new Spiel(me, new User("testuser2", "passwort2"));
+            me.addShip(new Schiffe(3));
         }
 
         public int x = 0, y = 0;
@@ -113,13 +118,7 @@ namespace WinSchiffeVersenken
         {
             x = 1;
             y = 1;
-            if(_x1y1.getShipID() != -1)
-            {
-                _x1y1.BackColor = Color.Red;
-            } else
-            {
-                _x1y1.BackColor = Color.Blue;
-            }
+            checkClick(_x1y1);
             
         }
 
@@ -127,7 +126,6 @@ namespace WinSchiffeVersenken
         {
             x = 2;
             y = 1;
-            //_x2y1.BackColor = Color.Blue;
             if (_x2y1.getShipID() != -1)
             {
                 _x2y1.BackColor = Color.Red;
@@ -248,6 +246,27 @@ namespace WinSchiffeVersenken
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkClick(Feld feld)
+        {
+            if (feld.getShipID() != -1)
+            {
+                Schiffe s = me.getShips()[feld.getShipID()];
+                s.getroffen();
+                s.istversenktfunct();
+                if (s.istversenkt())
+                {
+                    feld.BackColor = Color.Red;
+                } else
+                {
+                    feld.BackColor = Color.LightSalmon;
+                }
+            }
+            else
+            {
+                feld.BackColor = Color.Blue;
+            }
         }
 
     }

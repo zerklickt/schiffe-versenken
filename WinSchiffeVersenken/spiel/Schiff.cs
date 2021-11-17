@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinSchiffeversenken
+namespace WinSchiffeVersenken
 {
 
     public struct anz
@@ -32,7 +32,7 @@ namespace WinSchiffeversenken
             return lang;
         }
 
-        public int getnumber()
+        public int getid()
         {
             return id;
         }
@@ -53,8 +53,11 @@ namespace WinSchiffeversenken
                 if (numgetroffen == lang)
                 {
                     versenkt = true;
+                } else
+                {
+                    versenkt = false;
                 }
-                versenkt = false;
+                
             }
         }
     }
