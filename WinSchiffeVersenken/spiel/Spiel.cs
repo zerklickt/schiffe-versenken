@@ -9,13 +9,25 @@ namespace WinSchiffeVersenken
         private Spielfeld sf;
 
         private bool myTurn;
+        private bool linksEingeloggt;
 
         public Spiel(User me, User opponent)
         {
+            this.linksEingeloggt = false;
             this.me = me;
             myTurn = true;
             this.opponent = opponent;
             sf = new Spielfeld(this);
+        }
+
+        public bool istLinksEingeloggt()
+        {
+            return linksEingeloggt;
+        }
+
+        public void setLinksEingeloggt(bool s)
+        {
+            this.linksEingeloggt = s;
         }
 
         public User getMe()

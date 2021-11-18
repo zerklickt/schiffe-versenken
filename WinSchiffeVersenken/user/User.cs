@@ -16,7 +16,7 @@ namespace WinSchiffeVersenken
 
         public User(string username, string password, int score = 0)
         {
-            ships = new Schiffe[2];
+            ships = new Schiffe[Settings.SHIPS_2 + Settings.SHIPS_3 + Settings.SHIPS_4];
             this.username = username;
             this.password = password;
             this.score = score;

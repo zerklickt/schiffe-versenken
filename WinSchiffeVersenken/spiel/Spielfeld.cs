@@ -7,6 +7,9 @@ namespace WinSchiffeVersenken
     {
         Spiel sp;
         private int size;
+        private int amount4s = 0;
+        private int amount3s = 0;
+        private int amount2s = 0;
         private Feld[,] buttons = Form1.getButtonsRight();
 
         public Spielfeld(Spiel sp)
@@ -18,6 +21,36 @@ namespace WinSchiffeVersenken
         public Feld[,] getButtons()
         {
             return buttons;
+        }
+
+        public int getAmount4s()
+        {
+            return amount4s;
+        }
+
+        public int getAmount3s()
+        {
+            return amount3s;
+        }
+
+        public int getAmount2s()
+        {
+            return amount2s;
+        }
+
+        public void add4()
+        {
+            amount4s++;
+        }
+
+        public void add3()
+        {
+            amount3s++;
+        }
+
+        public void add2()
+        {
+            amount2s++;
         }
 
         public bool fire(int x, int y)
@@ -130,6 +163,46 @@ namespace WinSchiffeVersenken
                         count++;
                     }
                 }
+            }
+            
+            switch (count)
+            {
+                case 2:
+                    if (amount2s < Settings.SHIPS_2)
+                        amount2s++;
+                    else
+                    {
+                        Form1.getLabelOut().Text = "Keine 2er-Schiffe mehr möglich!";
+                        clearUnused();
+                        return;
+                    }
+                    break;
+                case 3:
+                    if (amount3s < Settings.SHIPS_3)
+                        amount3s++;
+                    else
+                    {
+                        Form1.getLabelOut().Text = "Keine 3er-Schiffe mehr möglich!";
+
+                        clearUnused();
+                        return;
+                    }
+                    break;
+                case 4:
+                    if (amount4s < Settings.SHIPS_4)
+                        amount4s++;
+                    else
+                    {
+                        Form1.getLabelOut().Text = "Keine 4er-Schiffe mehr möglich!";
+
+                        clearUnused();
+                        return;
+                    }
+                    break;
+                default:
+                    Form1.getLabelOut().Text = "Keine gültige Schiffsgröße!";
+                    clearUnused();
+                    break;
             }
             sp.getcurrUser().addShip(count);
             return;

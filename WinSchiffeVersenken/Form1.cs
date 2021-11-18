@@ -37,62 +37,45 @@ namespace WinSchiffeVersenken
             sp = new Spiel(me, new User("testuser2", "passwort2"));
         }
 
+
+        //Will be removed soon, since out of service
         private void textBox9_TextChanged(object sender, EventArgs e)
         {
         }
 
+        //Will be removed soon, since out of service
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                x = Convert.ToInt32(textBox9.Text);
-                y = Convert.ToInt32(textBox10.Text);
-            }
-            catch { }
-            Form1.pictureBoxes[x - 1, y - 1].BackColor = Color.Black;
-            int cache = buttons[x - 1, y - 1].getShipID();
-            if (cache != -1)
-            {
-                buttons[x - 1, y - 1].setShipID(sp);
-            }
-            else
-            {
-                Form1.getLabelOut().Text = "Feld ist schon belegt";
-            }
+            sp.setLinksEingeloggt(true);
+            reload();
         }
 
         private void btnClick(object sender, EventArgs e)
         {
             sp.GetSpielfeld().checkClick((Feld)sender);
-            //reload();
+            reload();
         }
 
         private void pBoxClick(object sender, EventArgs e)
         {
-            ((PictureBox)sender).BackColor = Color.Black;
-            for (int x = 0; x < Settings.SIZE; x++)
+            if (sp.istLinksEingeloggt())
             {
-                for (int y = 0; y < Settings.SIZE; y++)
-                {
-                    if (Form1.pictureBoxes[x, y].Equals(((PictureBox)sender)))
-                    {
-                        int cache = buttons[x, y].getShipID();
-                        if (cache == -1)
-                        {
-                            buttons[x, y].setShipID(sp);
-                        }
-                        else
-                        {
-                            Form1.getLabelOut().Text = "Feld ist schon belegt";
-                        }
-
-                        return;
-                    }
-                }
+                Form1.getLabelOut().Text = "Keine Änderung mehr möglich";
+                return;
+            }
+            int cache = buttons[((FeldLinks) sender).getX(),((FeldLinks) sender).getY()].getShipID();
+            if (cache == -1)
+            {
+                ((PictureBox)sender).BackColor = Color.Black;
+                buttons[((FeldLinks)sender).getX(), ((FeldLinks)sender).getY()].setShipID(sp);
+            }
+            else
+            {
+                Form1.getLabelOut().Text = "Feld ist schon belegt";
             }
         }
 
@@ -105,21 +88,15 @@ namespace WinSchiffeVersenken
 
         private void reload()
         {
-            foreach (Feld d in Form1.getButtonsRight())
+            bool t = sp.istLinksEingeloggt();
+            foreach(FeldLinks f in Form1.getPicBoxes())
             {
-                foreach(Schiffe s in sp.getMe().getShips())
+                if (t)
                 {
-                    if(s.getid() == d.getShipID())
-                    {
-                        if (s.istversenkt())
-                        {
-                            d.setStatus(Status.SUNK);
-                            d.BackColor = Color.Red;
-                        } else {
-                            d.setStatus(Status.HIT);
-                            d.BackColor = Color.LightSalmon;
-                        }
-                    }
+                    if(Form1.getButtonsRight()[f.getX(), f.getY()].getShipID() != -1)
+                        f.BackColor = Color.DarkGray;
+                    else
+                        f.BackColor = Color.WhiteSmoke ;
                 }
             }
         }

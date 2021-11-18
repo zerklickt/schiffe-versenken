@@ -31,18 +31,18 @@ namespace WinSchiffeVersenken
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             Form1.labelOut = new System.Windows.Forms.Label();
-            this.labelOpponent = new System.Windows.Forms.Label();
+            Form1.labelOpponent = new System.Windows.Forms.Label();
             this.labelOpponentHeader = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
 
 
 
-            Form1.pictureBoxes = new PictureBox[Settings.SIZE, Settings.SIZE];
+            Form1.pictureBoxes = new FeldLinks[Settings.SIZE, Settings.SIZE];
             for (int x = 0; x < Settings.SIZE; x++)
             {
                 for (int y = 0; y < Settings.SIZE; y++)
                 {
-                    Form1.pictureBoxes[x, y] = new PictureBox();
+                    Form1.pictureBoxes[x, y] = new FeldLinks(x, y);
                 }
             }
             this.textBoxes = new TextBox[Settings.SIZE + 1, Settings.SIZE + 1];
@@ -133,7 +133,6 @@ namespace WinSchiffeVersenken
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(86, 20);
             this.textBox9.TabIndex = 25;
-            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // textBox10
             // 
@@ -141,7 +140,6 @@ namespace WinSchiffeVersenken
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(86, 20);
             this.textBox10.TabIndex = 26;
-            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
             // 
             // textBox11
             // 
@@ -252,13 +250,13 @@ namespace WinSchiffeVersenken
             // 
             // labelOpponent
             // 
-            this.labelOpponent.AutoSize = true;
-            this.labelOpponent.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelOpponent.Location = new System.Drawing.Point(Settings.SIZE * 55 + Settings.SIZE * 55 / 2 + 310, 20);
-            this.labelOpponent.Name = "labelOpponent";
-            this.labelOpponent.Size = new System.Drawing.Size(39, 14);
-            this.labelOpponent.TabIndex = 0;
-            this.labelOpponent.Text = "Gegnername";
+            Form1.labelOpponent.AutoSize = true;
+            Form1.labelOpponent.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Form1.labelOpponent.Location = new System.Drawing.Point(Settings.SIZE * 55 + Settings.SIZE * 55 / 2 + 310, 20);
+            Form1.labelOpponent.Name = "labelOpponent";
+            Form1.labelOpponent.Size = new System.Drawing.Size(39, 14);
+            Form1.labelOpponent.TabIndex = 0;
+            Form1.labelOpponent.Text = "Gegnername";
             // 
             // labelName
             // 
@@ -297,7 +295,7 @@ namespace WinSchiffeVersenken
             this.Controls.Add(this.textBoxName);
 
             this.Controls.Add(Form1.labelOut);
-            this.Controls.Add(this.labelOpponent);
+            this.Controls.Add(Form1.labelOpponent);
             this.Controls.Add(this.labelOpponentHeader);
             this.Controls.Add(this.labelName);
 
@@ -340,12 +338,12 @@ namespace WinSchiffeVersenken
         private void InitializeComponent()
         {
 
-            Form1.pictureBoxes = new PictureBox[Settings.SIZE, Settings.SIZE];
+            Form1.pictureBoxes = new FeldLinks[Settings.SIZE, Settings.SIZE];
             for (int x = 0; x < Settings.SIZE; x++)
             {
                 for (int y = 0; y < Settings.SIZE; y++)
                 {
-                    Form1.pictureBoxes[x, y] = new PictureBox();
+                    Form1.pictureBoxes[x, y] = new FeldLinks(x,y);
                 }
             }
             
@@ -497,7 +495,7 @@ namespace WinSchiffeVersenken
         }
 
         #endregion
-        private static PictureBox[,] pictureBoxes;
+        private static FeldLinks[,] pictureBoxes;
         private TextBox[,] textBoxes;
         
         private System.Windows.Forms.TextBox textBox9;
@@ -508,7 +506,7 @@ namespace WinSchiffeVersenken
 
         private static System.Windows.Forms.Label labelOut;
         private System.Windows.Forms.Label labelOpponentHeader;
-        private System.Windows.Forms.Label labelOpponent;
+        private static System.Windows.Forms.Label labelOpponent;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button buttonConnect;
@@ -531,5 +529,9 @@ namespace WinSchiffeVersenken
             return buttons;
         }
         
+        internal static Label getNameBox()
+        {
+            return labelOpponent;
+        }
     }
 }

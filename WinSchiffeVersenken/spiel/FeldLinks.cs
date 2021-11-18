@@ -1,18 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace WinSchiffeVersenken.spiel
+namespace WinSchiffeVersenken
 {
     class FeldLinks : PictureBox
     {
-        private int x, y;
 
-        public FeldLinks(int x, int y)
+        private int x, y, shipID;
+        private Status status;
+
+        public FeldLinks(int x, int y, Status status = Status.DEFAULT, int shipID = -1)
         {
             this.x = x;
             this.y = y;
+            this.status = status;
+            this.shipID = shipID;
+        }
+
+        public int getStatusInt()
+        {
+            return (int)this.status;
+        }
+
+        public Status getStatus()
+        {
+            return this.status;
+        }
+
+        public void setStatus(int status)
+        {
+            switch (status)
+            {
+                case 1:
+                    this.status = Status.MISS;
+                    break;
+                case 2:
+                    this.status = Status.HIT;
+                    break;
+                case 3:
+                    this.status = Status.SUNK;
+                    break;
+                default:
+                    this.status = Status.DEFAULT;
+                    break;
+            }
+        }
+
+        public void setStatus(Status status)
+        {
+            this.status = status;
         }
 
         public int getX()
@@ -33,6 +68,22 @@ namespace WinSchiffeVersenken.spiel
         public void setY(int y)
         {
             this.y = y;
+        }
+
+        public int getShipID()
+        {
+            return shipID;
+        }
+
+        public void setShipID(Spiel sp)
+        {
+            int cache = sp.getcurrUser().getamountships();
+            this.shipID = cache;
+        }
+
+        public void setShipID(int v)
+        {
+            this.shipID = v;
         }
     }
 }
