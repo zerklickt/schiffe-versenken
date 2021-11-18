@@ -64,9 +64,18 @@ namespace WinSchiffeVersenken
 
         private void pBoxClick(object sender, EventArgs e)
         {
-
+            ((PictureBox)sender).BackColor = Color.Black;
+            for(int x = 0; x < Settings.SIZE; x++)
+            {
+                for(int y = 0; y < Settings.SIZE; y++)
+                {
+                    if(this.pictureBoxes[x, y].Equals(((PictureBox)sender)))
+                    {
+                        buttons[x, y].setShipID(sp);
+                        return;
+                    }
+                }
+            }
         }
-        
-
     }
 }

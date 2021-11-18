@@ -29,6 +29,19 @@ namespace WinSchiffeVersenken
         //=======
         private void privateInit()
         {
+            this.labelOut = new System.Windows.Forms.Label();
+            // 
+            // label1
+            // 
+            this.labelOut.AutoSize = true;
+            this.labelOut.Location = new System.Drawing.Point(311, 174);
+            this.labelOut.Name = "label1";
+            this.labelOut.Size = new System.Drawing.Size(39, 14);
+            this.labelOut.TabIndex = 0;
+            this.labelOut.Text = "label1";
+
+
+
 
             this.pictureBoxes = new PictureBox[Settings.SIZE, Settings.SIZE];
             for (int x = 0; x < Settings.SIZE; x++)
@@ -203,6 +216,8 @@ namespace WinSchiffeVersenken
             this.Controls.Add(this.textBox11);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
+
+            this.Controls.Add(this.labelOut);
 
             foreach (Feld btn in Form1.buttons)
             {
@@ -1091,6 +1106,8 @@ namespace WinSchiffeVersenken
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox12;
+
+        private System.Windows.Forms.Label labelOut;
         /*
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.TextBox textBox14;
