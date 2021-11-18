@@ -80,5 +80,10 @@ namespace WinSchiffeVersenken
             int cache = sp.getcurrUser().getamountships();
             this.shipID = cache;
         }
+
+        public void setShipID(int v)
+        {
+            this.shipID = v;
+        }
     }
 }

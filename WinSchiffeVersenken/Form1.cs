@@ -53,13 +53,14 @@ namespace WinSchiffeVersenken
                 y = Convert.ToInt32(textBox10.Text);
             }
             catch { }
-            this.pictureBoxes[x-1, y-1].BackColor = Color.Black;
+            Form1.pictureBoxes[x-1, y-1].BackColor = Color.Black;
             buttons[x - 1, y - 1].setShipID(sp);
         }
 
         private void btnClick(object sender, EventArgs e)
         {
             sp.GetSpielfeld().checkClick((Feld)sender);
+            //reload();
         }
 
         private void pBoxClick(object sender, EventArgs e)
@@ -69,10 +70,36 @@ namespace WinSchiffeVersenken
             {
                 for(int y = 0; y < Settings.SIZE; y++)
                 {
-                    if(this.pictureBoxes[x, y].Equals(((PictureBox)sender)))
+                    if(Form1.pictureBoxes[x, y].Equals(((PictureBox)sender)))
                     {
                         buttons[x, y].setShipID(sp);
                         return;
+                    }
+                }
+            }
+        }
+
+        private void nextShip(object sender, EventArgs e)
+        {
+            sp.GetSpielfeld().Checkeinput();
+        }
+
+        private void reload()
+        {
+            foreach (Feld d in Form1.getButtons())
+            {
+                foreach(Schiffe s in sp.getMe().getShips())
+                {
+                    if(s.getid() == d.getShipID())
+                    {
+                        if (s.istversenkt())
+                        {
+                            d.setStatus(Status.SUNK);
+                            d.BackColor = Color.Red;
+                        } else {
+                            d.setStatus(Status.HIT);
+                            d.BackColor = Color.LightSalmon;
+                        }
                     }
                 }
             }

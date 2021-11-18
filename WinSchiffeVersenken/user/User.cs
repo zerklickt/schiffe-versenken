@@ -27,7 +27,7 @@ namespace WinSchiffeVersenken
         {
             try
             {
-                ships[amountships] = new Schiffe(count, amountships);
+                this.ships[amountships] = new Schiffe(count, amountships);
                 amountships++;
                 return true;
             }

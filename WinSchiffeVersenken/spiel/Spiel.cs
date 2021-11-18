@@ -13,6 +13,7 @@ namespace WinSchiffeVersenken
         public Spiel(User me, User opponent)
         {
             this.me = me;
+            myTurn = true;
             this.opponent = opponent;
             sf = new Spielfeld(this);
         }
