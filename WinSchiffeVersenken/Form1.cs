@@ -53,8 +53,16 @@ namespace WinSchiffeVersenken
                 y = Convert.ToInt32(textBox10.Text);
             }
             catch { }
-            Form1.pictureBoxes[x-1, y-1].BackColor = Color.Black;
-            buttons[x - 1, y - 1].setShipID(sp);
+            Form1.pictureBoxes[x - 1, y - 1].BackColor = Color.Black;
+            int cache = buttons[x - 1, y - 1].getShipID();
+            if (cache != -1)
+            {
+                buttons[x - 1, y - 1].setShipID(sp);
+            }
+            else
+            {
+                Form1.getLabelOut().Text = "Feld ist schon belegt";
+            }
         }
 
         private void btnClick(object sender, EventArgs e)
@@ -66,13 +74,22 @@ namespace WinSchiffeVersenken
         private void pBoxClick(object sender, EventArgs e)
         {
             ((PictureBox)sender).BackColor = Color.Black;
-            for(int x = 0; x < Settings.SIZE; x++)
+            for (int x = 0; x < Settings.SIZE; x++)
             {
-                for(int y = 0; y < Settings.SIZE; y++)
+                for (int y = 0; y < Settings.SIZE; y++)
                 {
-                    if(Form1.pictureBoxes[x, y].Equals(((PictureBox)sender)))
+                    if (Form1.pictureBoxes[x, y].Equals(((PictureBox)sender)))
                     {
-                        buttons[x, y].setShipID(sp);
+                        int cache = buttons[x, y].getShipID();
+                        if (cache == -1)
+                        {
+                            buttons[x, y].setShipID(sp);
+                        }
+                        else
+                        {
+                            Form1.getLabelOut().Text = "Feld ist schon belegt";
+                        }
+
                         return;
                     }
                 }
@@ -82,11 +99,13 @@ namespace WinSchiffeVersenken
         private void nextShip(object sender, EventArgs e)
         {
             sp.GetSpielfeld().Checkeinput();
+            
+
         }
 
         private void reload()
         {
-            foreach (Feld d in Form1.getButtons())
+            foreach (Feld d in Form1.getButtonsRight())
             {
                 foreach(Schiffe s in sp.getMe().getShips())
                 {
@@ -103,6 +122,16 @@ namespace WinSchiffeVersenken
                     }
                 }
             }
+        }
+
+        private void buttonConnect_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSetName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

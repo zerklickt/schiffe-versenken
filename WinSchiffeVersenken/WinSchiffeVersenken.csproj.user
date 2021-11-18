@@ -7,5 +7,8 @@
     <Compile Update="spiel\Feld.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="spiel\FeldLinks.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

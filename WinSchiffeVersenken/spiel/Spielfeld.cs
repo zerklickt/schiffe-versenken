@@ -7,7 +7,7 @@ namespace WinSchiffeVersenken
     {
         Spiel sp;
         private int size;
-        private Feld[,] buttons = Form1.getButtons();
+        private Feld[,] buttons = Form1.getButtonsRight();
 
         public Spielfeld(Spiel sp)
         {

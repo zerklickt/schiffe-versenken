@@ -29,9 +29,11 @@ namespace WinSchiffeVersenken
         //=======
         private void privateInit()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             Form1.labelOut = new System.Windows.Forms.Label();
             this.labelOpponent = new System.Windows.Forms.Label();
             this.labelOpponentHeader = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
 
 
 
@@ -60,6 +62,7 @@ namespace WinSchiffeVersenken
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
 
 
             this.button1 = new System.Windows.Forms.Button();
@@ -73,6 +76,8 @@ namespace WinSchiffeVersenken
                 }
             }
             this.button2 = new System.Windows.Forms.Button();
+            this.buttonConnect = new System.Windows.Forms.Button();
+            this.buttonSetName = new System.Windows.Forms.Button();
             foreach (PictureBox box in Form1.pictureBoxes)
             {
                 ((System.ComponentModel.ISupportInitialize)(box)).BeginInit();
@@ -155,6 +160,15 @@ namespace WinSchiffeVersenken
             this.textBox12.Size = new System.Drawing.Size(48, 13);
             this.textBox12.TabIndex = 28;
             this.textBox12.Text = "Y-Koord.";
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxName.Location = new System.Drawing.Point(Settings.SIZE * 55 - 330, 20);
+            this.textBoxName.Name = "textBox12";
+            this.textBoxName.Size = new System.Drawing.Size(48, 13);
+            this.textBoxName.TabIndex = 28;
+            this.textBoxName.Text = "";
 
             // 
             // button1
@@ -166,6 +180,26 @@ namespace WinSchiffeVersenken
             this.button1.Text = "platzieren";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonConnect
+            // 
+            this.buttonConnect.Location = new System.Drawing.Point(Settings.SIZE * 55 - 224, 20);
+            this.buttonConnect.Name = "buttonConnect";
+            this.buttonConnect.Size = new System.Drawing.Size(84, 22);
+            this.buttonConnect.TabIndex = 29;
+            this.buttonConnect.Text = "Verbinden";
+            this.buttonConnect.UseVisualStyleBackColor = true;
+            this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
+            // 
+            // buttonSetName
+            //
+            this.buttonSetName.Location = new System.Drawing.Point(Settings.SIZE * 55 - 280, 20);
+            this.buttonSetName.Name = "buttonSetName";
+            this.buttonSetName.Size = new System.Drawing.Size(54, 22);
+            this.buttonSetName.TabIndex = 29;
+            this.buttonSetName.Text = "Name ändern";
+            this.buttonSetName.UseVisualStyleBackColor = true;
+            this.buttonSetName.Click += new System.EventHandler(this.buttonSetName_Click);
 
             int i = 0;
             for (int x = 0; x < Settings.SIZE; x++)
@@ -221,10 +255,20 @@ namespace WinSchiffeVersenken
             this.labelOpponent.AutoSize = true;
             this.labelOpponent.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelOpponent.Location = new System.Drawing.Point(Settings.SIZE * 55 + Settings.SIZE * 55 / 2 + 310, 20);
-            this.labelOpponent.Name = "label1";
+            this.labelOpponent.Name = "labelOpponent";
             this.labelOpponent.Size = new System.Drawing.Size(39, 14);
             this.labelOpponent.TabIndex = 0;
             this.labelOpponent.Text = "Gegnername";
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelName.Location = new System.Drawing.Point(100, 20);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(39, 14);
+            this.labelName.TabIndex = 0;
+            this.labelName.Text = "Name: ";
 
             // 
             // 
@@ -235,7 +279,11 @@ namespace WinSchiffeVersenken
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             //this.ClientSize = new System.Drawing.Size(951, 338);
             this.ClientSize = new System.Drawing.Size(Settings.SIZE * 55 * 2 + 350, Settings.SIZE * 55 + 130);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$battleship.ico")));
+
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonSetName);
+            this.Controls.Add(this.buttonConnect);
 
             foreach (TextBox box in this.textBoxes)
             {
@@ -246,10 +294,12 @@ namespace WinSchiffeVersenken
             this.Controls.Add(this.textBox11);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.textBoxName);
 
             this.Controls.Add(Form1.labelOut);
             this.Controls.Add(this.labelOpponent);
             this.Controls.Add(this.labelOpponentHeader);
+            this.Controls.Add(this.labelName);
 
             foreach (Feld btn in Form1.buttons)
             {
@@ -454,11 +504,15 @@ namespace WinSchiffeVersenken
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBoxName;
 
         private static System.Windows.Forms.Label labelOut;
         private System.Windows.Forms.Label labelOpponentHeader;
         private System.Windows.Forms.Label labelOpponent;
+        private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonConnect;
+        private System.Windows.Forms.Button buttonSetName;
         private System.Windows.Forms.Button button1;
         private static Feld[,] buttons;
         
@@ -472,7 +526,7 @@ namespace WinSchiffeVersenken
             return pictureBoxes;
         }
 
-        internal static Feld[,] getButtons()
+        internal static Feld[,] getButtonsRight()
         {
             return buttons;
         }
