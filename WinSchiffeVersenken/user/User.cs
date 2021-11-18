@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Text;
 
 namespace WinSchiffeVersenken
 {
@@ -10,22 +12,26 @@ namespace WinSchiffeVersenken
         protected int score;
         protected IPAddress ipAdress;
         private Schiffe[] ships;
+        private int amountships;
 
         public User(string username, string password, int score = 0)
         {
-            ships = new Schiffe[10];
+            ships = new Schiffe[2];
             this.username = username;
             this.password = password;
             this.score = score;
+            amountships = 0;
         }
 
-        public bool addShip(Schiffe s)
+        public bool addShip(int count)
         {
             try
             {
-                ships[s.getid()] = s;
+                ships[amountships] = new Schiffe(count, amountships);
+                amountships++;
                 return true;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return false;
             }
@@ -35,7 +41,10 @@ namespace WinSchiffeVersenken
         {
             return this.score;
         }
-
+        public int getamountships()
+        {
+            return this.amountships;
+        }
         public string getUsername()
         {
             return this.username;
@@ -54,6 +63,18 @@ namespace WinSchiffeVersenken
         public Schiffe[] getShips()
         {
             return this.ships;
+        }
+
+        public bool hatgewonnen()
+        {
+            for (int i = 0; i < ships.Length; i++)
+            {
+                if (ships[i].istversenkt() == false)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace WinSchiffeVersenken
+﻿using System.Collections.Generic;
+
+namespace WinSchiffeVersenken
 {
     class Spiel
     {
@@ -28,6 +30,45 @@
         public User getOpponent()
         {
             return opponent;
+        }
+        public User getcurrUser()
+        {
+            if (myTurn)
+            {
+                return me;
+            }
+            else
+            {
+                return opponent;
+            }
+        }
+
+        public bool checkshipequal()
+        {
+            if (me.getamountships() != opponent.getamountships())
+            {
+                return false;
+            }
+            List<int> shiplengthplayerme = new List<int>();
+            for (int i = 0; i < me.getShips().Length; i++)
+            {
+                shiplengthplayerme.Add(me.getShips()[i].getlang());
+            }
+            shiplengthplayerme.Sort();
+            List<int> shiplengthplayeropp = new List<int>();
+            for (int i = 0; i < me.getShips().Length; i++)
+            {
+                shiplengthplayeropp.Add(me.getShips()[i].getlang());
+            }
+            shiplengthplayeropp.Sort();
+            for (int i = 0; i < me.getShips().Length; i++)
+            {
+                if (shiplengthplayerme[i] != shiplengthplayeropp[i])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

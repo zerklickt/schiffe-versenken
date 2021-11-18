@@ -27,8 +27,8 @@ namespace WinSchiffeVersenken
              * #niceASCIIart ich weiss danke
              */
 
-            InitializeComponent();
-            //privateInit();
+            //InitializeComponent();
+            privateInit();
 
             /*
              * ==============================================================================================================
@@ -54,90 +54,18 @@ namespace WinSchiffeVersenken
             }
             catch { }
             this.pictureBoxes[x-1, y-1].BackColor = Color.Black;
-            /*
-            if (x == 1 && y == 1)
-            {
-                x1y1.BackColor = Color.Black;
-            }
-            if (x == 2 && y == 1)
-            {
-                x2y1.BackColor = Color.Black;
-            }
-            if (x == 3 && y == 1)
-            {
-                x3y1.BackColor = Color.Black;
-            }
-            if (x == 4 && y == 1)
-            {
-                x4y1.BackColor = Color.Black;
-            }
-            if (x == 1 && y == 2)
-            {
-                x1y2.BackColor = Color.Black;
-            }
-            if (x == 2 && y == 2)
-            {
-                x2y2.BackColor = Color.Black;
-            }
-            if (x == 3 && y == 2)
-            {
-                x3y2.BackColor = Color.Black;
-            }
-            if (x == 4 && y == 2)
-            {
-                x4y2.BackColor = Color.Black;
-            }
-            if (x == 1 && y == 3)
-            {
-                x1y3.BackColor = Color.Black;
-            }
-            if (x == 2 && y == 3)
-            {
-                x2y3.BackColor = Color.Black;
-            }
-            if (x == 3 && y == 3)
-            {
-                x3y3.BackColor = Color.Black;
-            }
-            if (x == 4 && y == 3)
-            {
-                x4y3.BackColor = Color.Black;
-            }
-            if (x == 1 && y == 4)
-            {
-                x1y4.BackColor = Color.Black;
-            }
-            if (x == 2 && y == 4)
-            {
-                x2y4.BackColor = Color.Black;
-            }
-            if (x == 3 && y == 4)
-            {
-                x3y4.BackColor = Color.Black;
-            }
-            if (x == 4 && y == 4)
-            {
-                x4y4.BackColor = Color.Black;
-            }
-            */
+            buttons[x - 1, y - 1].setShipID(sp);
         }
 
         private void btnClick(object sender, EventArgs e)
         {
-            sp.GetSpielfeld().checkClick((Feld) sender);
+            sp.GetSpielfeld().checkClick((Feld)sender);
         }
 
         private void pBoxClick(object sender, EventArgs e)
         {
 
         }
-
-        /*
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-        */
         
 
     }

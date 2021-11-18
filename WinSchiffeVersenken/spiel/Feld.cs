@@ -75,9 +75,10 @@ namespace WinSchiffeVersenken
             return shipID;
         }
 
-        public void setShipID(int shipID)
+        public void setShipID(Spiel sp)
         {
-            this.shipID = shipID;
+            int cache = sp.getcurrUser().getamountships();
+            this.shipID = cache;
         }
     }
 }

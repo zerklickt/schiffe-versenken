@@ -1,10 +1,5 @@
 ﻿namespace WinSchiffeVersenken
 {
-
-    public struct anz
-    {
-        public static int anzahl = 0;
-    }
     class Schiffe
     {
         private int lang;
@@ -12,12 +7,12 @@
         private int numgetroffen;
         private int id;
         public Schiffe() { }
-        public Schiffe(int _lang) : base()
+        public Schiffe(int _lang, int _id) : base()
         {
             lang = _lang;
             versenkt = false;
             numgetroffen = 0;
-            id = anz.anzahl++;
+            id = _id;
         }
 
         public int getlang()
@@ -40,24 +35,19 @@
             return versenkt;
         }
 
-        public int getAnzahl()
-        {
-            return anz.anzahl;
-        }
-
         public void istversenktfunct()
         {
             {
                 if (numgetroffen == lang)
                 {
                     versenkt = true;
-                } else
+                }
+                else
                 {
                     versenkt = false;
                 }
-                
+
             }
         }
     }
 }
-
