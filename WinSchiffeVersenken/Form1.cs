@@ -68,11 +68,11 @@ namespace WinSchiffeVersenken
                 Form1.getLabelOut().Text = "Keine Änderung mehr möglich";
                 return;
             }
-            int cache = buttons[((FeldLinks) sender).getX(),((FeldLinks) sender).getY()].getShipID();
+            int cache = pictureBoxes[((FeldLinks) sender).getX(),((FeldLinks) sender).getY()].getShipID();
             if (cache == -1)
             {
                 ((PictureBox)sender).BackColor = Color.Black;
-                buttons[((FeldLinks)sender).getX(), ((FeldLinks)sender).getY()].setShipID(sp);
+                pictureBoxes[((FeldLinks)sender).getX(), ((FeldLinks)sender).getY()].setShipID(sp);
             }
             else
             {
@@ -106,15 +106,14 @@ namespace WinSchiffeVersenken
             {
                 if (u)
                 {
-                    if (Form1.getButtonsRight()[f.getX(), f.getY()].getShipID() != -1)
-                        switch (f.getStatus())
+                    if (Form1.getPicBoxes()[f.getX(), f.getY()].getShipID() != -1)
+                    {
+                        Schiffe s = sp.getcurrUser().getShips()[Form1.getPicBoxes()[f.getX(), f.getY()].getShipID()];
+                        if (s.istversenkt())
                         {
-                            case Status.HIT:
-                                f.BackColor = Color.LightSalmon;
-                                break;
+                            f.BackColor = Color.Red;
                         }
-                    else
-                        f.BackColor = Color.WhiteSmoke;
+                    }
                 }
             }
         }

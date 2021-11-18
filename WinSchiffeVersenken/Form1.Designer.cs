@@ -78,7 +78,7 @@ namespace WinSchiffeVersenken
             this.button2 = new System.Windows.Forms.Button();
             this.buttonConnect = new System.Windows.Forms.Button();
             this.buttonSetName = new System.Windows.Forms.Button();
-            foreach (PictureBox box in Form1.pictureBoxes)
+            foreach (FeldLinks box in Form1.pictureBoxes)
             {
                 ((System.ComponentModel.ISupportInitialize)(box)).BeginInit();
             }
@@ -305,7 +305,7 @@ namespace WinSchiffeVersenken
             }
             this.Controls.Add(this.button1);
 
-            foreach (PictureBox btn in Form1.pictureBoxes)
+            foreach (FeldLinks btn in Form1.pictureBoxes)
             {
                 this.Controls.Add(btn);
             }
@@ -313,7 +313,7 @@ namespace WinSchiffeVersenken
             this.Name = "Form1";
             this.Text = "WORLD OF WARSHIPZZZZ";
 
-            foreach (PictureBox btn in Form1.pictureBoxes)
+            foreach (FeldLinks btn in Form1.pictureBoxes)
             {
                 ((System.ComponentModel.ISupportInitialize)(btn)).EndInit();
             }
@@ -370,7 +370,7 @@ namespace WinSchiffeVersenken
             }
             
             this.button2 = new System.Windows.Forms.Button();
-            foreach(PictureBox box in Form1.pictureBoxes)
+            foreach(FeldLinks box in Form1.pictureBoxes)
             {
                 ((System.ComponentModel.ISupportInitialize)(box)).BeginInit();
             }
@@ -475,7 +475,7 @@ namespace WinSchiffeVersenken
             
             this.Controls.Add(this.button1);
 
-            foreach (PictureBox btn in Form1.pictureBoxes)
+            foreach (FeldLinks btn in Form1.pictureBoxes)
             {
                 this.Controls.Add(btn);
             }
@@ -484,7 +484,7 @@ namespace WinSchiffeVersenken
             this.Name = "Form1";
             this.Text = "Form1";
 
-            foreach (PictureBox btn in Form1.pictureBoxes)
+            foreach (FeldLinks btn in Form1.pictureBoxes)
             {
                 ((System.ComponentModel.ISupportInitialize)(btn)).EndInit();
             }
@@ -519,7 +519,7 @@ namespace WinSchiffeVersenken
             return labelOut;
         }
 
-        internal static PictureBox[,] getPicBoxes()
+        internal static FeldLinks[,] getPicBoxes()
         {
             return pictureBoxes;
         }

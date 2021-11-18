@@ -30,6 +30,11 @@
             numgetroffen++;
         }
 
+        public int getGetroffen()
+        {
+            return numgetroffen;
+        }
+
         public bool istversenkt()
         {
             return versenkt;

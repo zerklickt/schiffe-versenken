@@ -11,6 +11,7 @@ namespace WinSchiffeVersenken
         private int amount3s = 0;
         private int amount2s = 0;
         private Feld[,] buttons = Form1.getButtonsRight();
+        private FeldLinks[,] buttonsLinks = Form1.getPicBoxes();
 
         public Spielfeld(Spiel sp)
         {
@@ -21,6 +22,11 @@ namespace WinSchiffeVersenken
         public Feld[,] getButtons()
         {
             return buttons;
+        }
+
+        public FeldLinks[,] getButtonsLinks()
+        {
+            return buttonsLinks;
         }
 
         public int getAmount4s()
@@ -53,8 +59,39 @@ namespace WinSchiffeVersenken
             amount2s++;
         }
 
+        public void receiveHitPacket(int x, int y)
+        {
+            int retID = -1;
+            FeldLinks fl = buttonsLinks[x, y];
+            Status st;
+            if (fl.getShipID() != -1)
+            {
+                retID = fl.getShipID();
+                Schiffe s = sp.getMe().getShips()[fl.getShipID()];
+                s.getroffen();
+                s.istversenktfunct();
+                if (s.istversenkt())
+                {
+                    st = Status.SUNK;
+                } else
+                {
+                    st = Status.HIT;
+                }
+            } else
+            {
+                st = Status.MISS;
+            }
+            /*
+             * 
+             * Send retID und st to Client
+             * 
+             */
+        }
+
+        /*
         public void checkClick(Feld feld)
         {
+            
             if (feld.getShipID() != -1)
             {
                 Schiffe s = sp.getcurrUser().getShips()[feld.getShipID()];
@@ -78,25 +115,49 @@ namespace WinSchiffeVersenken
                 feld.BackColor = Color.Blue;
             }
             feld.Enabled = false;
+            
         }
+        */
 
-        public bool alreadyoccup(int x, int y)
+        public void checkClick(Feld feld)
         {
-            if (buttons[x, y].getShipID() != -1)
+            
+            if (buttonsLinks[feld.getX(), feld.getY()].getShipID() != -1)
             {
-                return false;
+                Schiffe s = sp.getMe().getShips()[buttonsLinks[feld.getX(), feld.getY()].getShipID()];
+                s.getroffen();
+                s.istversenktfunct();
+                if (s.istversenkt())
+                {
+                    feld.setStatus(Status.SUNK);
+                    feld.BackColor = Color.Red;
+                    if (sp.getMe().hatverloren())
+                        Form1.getLabelOut().Text = "You suck";
+                }
+                else
+                {
+                    feld.setStatus(Status.HIT);
+                    feld.BackColor = Color.LightSalmon;
+                }
             }
-            return true;
+            else
+            {
+                feld.setStatus(Status.MISS);
+                feld.BackColor = Color.Blue;
+            }
+            feld.Enabled = false;
+            
+
         }
 
         public void Checkeinput()
         {
-            int id = this.sp.getcurrUser().getamountships();
+            int id = this.sp.getMe().getamountships();
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
                 {
-                    if (id == buttons[i, j].getShipID())
+                    if (id == buttonsLinks[i, j].getShipID())
                     {
                         switch (Adjacent(i, j))
                         {
@@ -110,7 +171,7 @@ namespace WinSchiffeVersenken
                                 {
                                     for (int l = 0; l < size; l++)
                                     {
-                                        if (buttons[k, l].getShipID() == id)
+                                        if (buttonsLinks[k, l].getShipID() == id)
                                         {
                                             Form1.getLabelOut().Text = "ungültiges Schiffformat";
                                             clearUnused();
@@ -131,7 +192,7 @@ namespace WinSchiffeVersenken
                                 {
                                     if (l < cachej)
                                     {
-                                        if (buttons[i, l].getShipID() != id)
+                                        if (buttonsLinks[i, l].getShipID() != id)
                                         {
                                             Form1.getLabelOut().Text = "schwerwiegender Fehler1";
                                             clearUnused();
@@ -140,7 +201,7 @@ namespace WinSchiffeVersenken
                                     }
                                     else
                                     {
-                                        if (buttons[i, l].getShipID() == id)
+                                        if (buttonsLinks[i, l].getShipID() == id)
                                         {
                                             Form1.getLabelOut().Text = "schwerwiegender Fehler2";
                                             clearUnused();
@@ -158,7 +219,7 @@ namespace WinSchiffeVersenken
                                     {
                                         if (l != j)
                                         {
-                                            if (buttons[k, l].getShipID() == id)
+                                            if (buttonsLinks[k, l].getShipID() == id)
                                             {
 
                                                 Form1.getLabelOut().Text = "ungültiges Schiffformat";
@@ -181,7 +242,7 @@ namespace WinSchiffeVersenken
                                 {
                                     if (l < cachej2)
                                     {
-                                        if (buttons[l, j].getShipID() != id)
+                                        if (buttonsLinks[l, j].getShipID() != id)
                                         {
                                             Form1.getLabelOut().Text = "schwerwiegender Fehler1";
                                             clearUnused();
@@ -190,7 +251,7 @@ namespace WinSchiffeVersenken
                                     }
                                     else
                                     {
-                                        if (buttons[l, j].getShipID() == id)
+                                        if (buttonsLinks[l, j].getShipID() == id)
                                         {
                                             Form1.getLabelOut().Text = "schwerwiegender Fehler2";
                                             clearUnused();
@@ -273,7 +334,7 @@ namespace WinSchiffeVersenken
             {
                 for (int j = 0; j < size; j++)
                 {
-                    if (id == buttons[i, j].getShipID())
+                    if (id == buttonsLinks[i, j].getShipID())
                     {
                         count++;
                     }
@@ -289,8 +350,7 @@ namespace WinSchiffeVersenken
             int db = -5;
             for (int i = hoehe + 1; i < size; i++)
             {
-                db = buttons[reihe, i].getShipID();
-                if (buttons[reihe, i].getShipID() == id)
+                if (buttonsLinks[reihe, i].getShipID() == id)
                 {
                     check = 1;
                 }
@@ -302,7 +362,7 @@ namespace WinSchiffeVersenken
             check = 0;
             for (int i = reihe + 1; i < size; i++)
             {
-                if (buttons[i, hoehe].getShipID() == id)
+                if (buttonsLinks[i, hoehe].getShipID() == id)
                 {
                     check = 2;
                 }
@@ -320,9 +380,9 @@ namespace WinSchiffeVersenken
             {
                 for (int j = 0; j < size; j++)
                 {
-                    if(buttons[i,j].getShipID() == sp.getcurrUser().getamountships())
+                    if(buttonsLinks[i,j].getShipID() == sp.getcurrUser().getamountships())
                     {
-                        buttons[i, j].setShipID(-1);
+                        buttonsLinks[i, j].setShipID(-1);
                         Form1.getPicBoxes()[i, j].BackColor = System.Drawing.SystemColors.ButtonHighlight;
                     }
                 }
