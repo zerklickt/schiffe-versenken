@@ -10,10 +10,12 @@ namespace WinSchiffeVersenken
 
         private bool myTurn;
         private bool linksEingeloggt;
+        private bool rechtsEingeloggt;
 
         public Spiel(User me, User opponent)
         {
             this.linksEingeloggt = false;
+            this.rechtsEingeloggt = false;
             this.me = me;
             myTurn = true;
             this.opponent = opponent;
@@ -26,6 +28,16 @@ namespace WinSchiffeVersenken
         }
 
         public void setLinksEingeloggt(bool s)
+        {
+            this.linksEingeloggt = s;
+        }
+
+        public bool istRechtsEingeloggt()
+        {
+            return linksEingeloggt;
+        }
+
+        public void setRechtsEingeloggt(bool s)
         {
             this.linksEingeloggt = s;
         }

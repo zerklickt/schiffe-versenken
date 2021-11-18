@@ -8,17 +8,15 @@ namespace WinSchiffeVersenken
     class User
     {
         protected string username;
-        protected string password;
         protected int score;
         protected IPAddress ipAdress;
         private Schiffe[] ships;
         private int amountships;
 
-        public User(string username, string password, int score = 0)
+        public User(string username, int score = 0)
         {
             ships = new Schiffe[Settings.SHIPS_2 + Settings.SHIPS_3 + Settings.SHIPS_4];
             this.username = username;
-            this.password = password;
             this.score = score;
             amountships = 0;
         }
@@ -55,17 +53,12 @@ namespace WinSchiffeVersenken
             this.username = username;
         }
 
-        public void setPassword(string password)
-        {
-            this.password = password;
-        }
-
         public Schiffe[] getShips()
         {
             return this.ships;
         }
 
-        public bool hatgewonnen()
+        public bool hatverloren()
         {
             for (int i = 0; i < ships.Length; i++)
             {

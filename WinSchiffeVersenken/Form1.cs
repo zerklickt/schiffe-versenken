@@ -33,8 +33,9 @@ namespace WinSchiffeVersenken
             /*
              * ==============================================================================================================
              */
-            me = new User("testuser", "password");
-            sp = new Spiel(me, new User("testuser2", "passwort2"));
+            me = new User("testuser");
+            sp = new Spiel(me, new User("testuser2"));
+            reload();
         }
 
 
@@ -82,11 +83,11 @@ namespace WinSchiffeVersenken
         private void nextShip(object sender, EventArgs e)
         {
             sp.GetSpielfeld().Checkeinput();
-            
+            reload();
 
         }
 
-        private void reload()
+        public void reload()
         {
             bool t = sp.istLinksEingeloggt();
             foreach(FeldLinks f in Form1.getPicBoxes())
@@ -97,6 +98,23 @@ namespace WinSchiffeVersenken
                         f.BackColor = Color.DarkGray;
                     else
                         f.BackColor = Color.WhiteSmoke ;
+                }
+            }
+
+            bool u = sp.istLinksEingeloggt();
+            foreach (Feld f in Form1.getButtonsRight())
+            {
+                if (u)
+                {
+                    if (Form1.getButtonsRight()[f.getX(), f.getY()].getShipID() != -1)
+                        switch (f.getStatus())
+                        {
+                            case Status.HIT:
+                                f.BackColor = Color.LightSalmon;
+                                break;
+                        }
+                    else
+                        f.BackColor = Color.WhiteSmoke;
                 }
             }
         }

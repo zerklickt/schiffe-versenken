@@ -53,12 +53,6 @@ namespace WinSchiffeVersenken
             amount2s++;
         }
 
-        public bool fire(int x, int y)
-        {
-
-            return false;
-        }
-
         public void checkClick(Feld feld)
         {
             if (feld.getShipID() != -1)
@@ -118,11 +112,42 @@ namespace WinSchiffeVersenken
                                     {
                                         if (buttons[k, l].getShipID() == id)
                                         {
-                                            Form1.getLabelOut().Text = "Das Schiff ist nicht zusammenhängend";
+                                            Form1.getLabelOut().Text = "ungültiges Schiffformat";
                                             clearUnused();
                                             return;
                                         }
                                     }
+                                }
+                                int count = counting(id);
+                                int cachej = j + count;
+                                if (cachej > size)
+                                {
+                                    Form1.getLabelOut().Text = "schwerwiegender Fehler";
+                                    clearUnused();
+                                    return;
+                                }
+
+                                for (int l = j; l < size; l++)
+                                {
+                                    if (l < cachej)
+                                    {
+                                        if (buttons[i, l].getShipID() != id)
+                                        {
+                                            Form1.getLabelOut().Text = "schwerwiegender Fehler1";
+                                            clearUnused();
+                                            return;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (buttons[i, l].getShipID() == id)
+                                        {
+                                            Form1.getLabelOut().Text = "schwerwiegender Fehler2";
+                                            clearUnused();
+                                            return;
+                                        }
+                                    }
+
                                 }
                                 goto br;
                                 break;
@@ -136,13 +161,46 @@ namespace WinSchiffeVersenken
                                             if (buttons[k, l].getShipID() == id)
                                             {
 
-                                                Form1.getLabelOut().Text = "Das Schiff ist nicht zusammenhängend";
+                                                Form1.getLabelOut().Text = "ungültiges Schiffformat";
                                                 clearUnused();
                                                 return;
                                             }
                                         }
                                     }
                                 }
+                                int count2 = counting(id);
+                                int cachej2 = i + count2;
+                                if (cachej2 > size)
+                                {
+                                    Form1.getLabelOut().Text = "schwerwiegender Fehler";
+                                    clearUnused();
+                                    return;
+                                }
+
+                                for (int l = i; l < size; l++)
+                                {
+                                    if (l < cachej2)
+                                    {
+                                        if (buttons[l, j].getShipID() != id)
+                                        {
+                                            Form1.getLabelOut().Text = "schwerwiegender Fehler1";
+                                            clearUnused();
+                                            return;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (buttons[l, j].getShipID() == id)
+                                        {
+                                            Form1.getLabelOut().Text = "schwerwiegender Fehler2";
+                                            clearUnused();
+                                            return;
+                                        }
+                                    }
+
+                                }
+
+
                                 goto br;
                                 break;
 
@@ -153,19 +211,8 @@ namespace WinSchiffeVersenken
                 }
             }
             br:
-            int count = 0;
-            for (int i = 0; i < size; i++)
-            {
-                for (int j = 0; j < size; j++)
-                {
-                    if (id == buttons[i, j].getShipID())
-                    {
-                        count++;
-                    }
-                }
-            }
-            
-            switch (count)
+
+            switch (counting(id))
             {
                 case 2:
                     if (amount2s < Settings.SHIPS_2)
@@ -204,9 +251,37 @@ namespace WinSchiffeVersenken
                     clearUnused();
                     break;
             }
-            sp.getcurrUser().addShip(count);
+            sp.getcurrUser().addShip(counting(id));
+            Form1.getLabelOut().Text = "Neues Schiff hinzugefügt";
+
+            if(amount4s == Settings.SHIPS_4 && amount3s == Settings.SHIPS_3 && amount2s == Settings.SHIPS_2)
+            {
+                /*
+                 * 
+                 * Sende Nachricht an Server, dass CLient alle Schiffe gesetzt hat und bereit ist zu spielen.
+                 * 
+                 */
+                sp.setLinksEingeloggt(true);
+            }
             return;
         }
+
+        private int counting(int id)
+        {
+            int count = 0;
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (id == buttons[i, j].getShipID())
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
+
         private int Adjacent(int reihe, int hoehe)
         {
             int id = this.sp.getcurrUser().getamountships();
