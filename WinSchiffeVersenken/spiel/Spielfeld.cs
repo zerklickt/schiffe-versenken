@@ -59,33 +59,30 @@ namespace WinSchiffeVersenken
             amount2s++;
         }
 
-        public void receiveHitPacket(int x, int y)
+        public Message receiveHitPacket(int x, int y)
         {
-            int retID = -1;
+            Message m = new Message(3, "");
+            string rs = "" + x + ";" + y + ";";
             FeldLinks fl = buttonsLinks[x, y];
-            Status st;
             if (fl.getShipID() != -1)
             {
-                retID = fl.getShipID();
+                rs += fl.getShipID() + ";";
                 Schiffe s = sp.getMe().getShips()[fl.getShipID()];
                 s.getroffen();
                 s.istversenktfunct();
                 if (s.istversenkt())
                 {
-                    st = Status.SUNK;
+                    rs += 2 + "";
                 } else
                 {
-                    st = Status.HIT;
+                    rs += 1 + "";
                 }
             } else
             {
-                st = Status.MISS;
+                rs += 0 + "";
             }
-            /*
-             * 
-             * Send retID und st to Client
-             * 
-             */
+            m.setPayload(rs);
+            return m;
         }
 
         /*
@@ -119,6 +116,7 @@ namespace WinSchiffeVersenken
         }
         */
 
+        /*
         public void checkClick(Feld feld)
         {
             
@@ -147,6 +145,38 @@ namespace WinSchiffeVersenken
             }
             feld.Enabled = false;
             
+
+        }
+        */
+
+        public void checkClick(Feld feld)
+        {
+
+            if (buttonsLinks[feld.getX(), feld.getY()].getShipID() != -1)
+            {
+                Schiffe s = sp.getMe().getShips()[buttonsLinks[feld.getX(), feld.getY()].getShipID()];
+                s.getroffen();
+                s.istversenktfunct();
+                if (s.istversenkt())
+                {
+                    feld.setStatus(Status.SUNK);
+                    feld.BackColor = Color.Red;
+                    if (sp.getMe().hatverloren())
+                        Form1.getLabelOut().Text = "You suck";
+                }
+                else
+                {
+                    feld.setStatus(Status.HIT);
+                    feld.BackColor = Color.LightSalmon;
+                }
+            }
+            else
+            {
+                feld.setStatus(Status.MISS);
+                feld.BackColor = Color.Blue;
+            }
+            feld.Enabled = false;
+
 
         }
 
