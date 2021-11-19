@@ -60,7 +60,7 @@ namespace WinSchiffeVersenken
 
         public bool hatverloren()
         {
-            for (int i = 0; i < ships.Length; i++)
+            for (int i = 0; i < amountships; i++)
             {
                 if (ships[i].istversenkt() == false)
                 {

@@ -278,7 +278,6 @@ namespace WinSchiffeVersenken
             //this.ClientSize = new System.Drawing.Size(951, 338);
             this.ClientSize = new System.Drawing.Size(Settings.SIZE * 55 * 2 + 350, Settings.SIZE * 55 + 130);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$battleship.ico")));
-
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonSetName);
             this.Controls.Add(this.buttonConnect);

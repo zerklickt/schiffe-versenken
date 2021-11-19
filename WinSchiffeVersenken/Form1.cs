@@ -11,6 +11,7 @@ namespace WinSchiffeVersenken
         private Spiel sp;
         private User me;
         private string namebuffer;
+        private string outbuffer = "";
         private NetworkClient networkClient;
 
         public Form1()
@@ -55,7 +56,7 @@ namespace WinSchiffeVersenken
 
         private void button1_Click(object sender, EventArgs e)
         {
-            sp.setLinksEingeloggt(true);
+            //sp.setLinksEingeloggt(true);
             reload();
         }
 
@@ -76,6 +77,7 @@ namespace WinSchiffeVersenken
             {
                 //Name packet: 0 = name;
                 namebuffer = m.getPayload();
+                reload();
             }
             else if (m.getType() == 2)
             {
@@ -83,6 +85,15 @@ namespace WinSchiffeVersenken
                 string[] sts = m.getPayload().Split(";");
                 Message ma = sp.GetSpielfeld().receiveHitPacket(int.Parse(sts[0]), int.Parse(sts[1]));
                 networkClient.sendSerialized(ma);
+                string[] s = ma.getPayload().Split(";");
+                if(int.Parse(s[3]) == 2)
+                {
+                    if (sp.getMe().hatverloren())
+                    {
+                        Message ml = new Message(4, "");
+                        networkClient.sendSerialized(ml);
+                    }
+                }
             }
             else if (m.getType() == 3)
             {
@@ -92,6 +103,7 @@ namespace WinSchiffeVersenken
                 if(int.Parse(sts[2]) == -1)
                 {
                     Form1.getButtonsRight()[int.Parse(sts[0]), int.Parse(sts[1])].setStatus(Status.MISS);
+                    reload();
                     return;
                 }
 
@@ -115,7 +127,8 @@ namespace WinSchiffeVersenken
             }
             else if (m.getType() == 4)
             {
-                Form1.getLabelOut().Text = "Du hast gewonnen!";
+                outbuffer = "Du hast gewonnen!";
+                button1.PerformClick();
             }
         }
 
@@ -182,6 +195,9 @@ namespace WinSchiffeVersenken
         public void reload()
         {
             Form1.getNameBox().Text = namebuffer;
+            if(outbuffer != "")
+                Form1.getLabelOut().Text = outbuffer;
+            outbuffer = "";
             bool t = sp.istLinksEingeloggt();
             /*
             foreach (FeldLinks f in Form1.getPicBoxes())

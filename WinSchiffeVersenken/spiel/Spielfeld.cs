@@ -79,6 +79,7 @@ namespace WinSchiffeVersenken
                 }
             } else
             {
+                rs += "-1;";
                 rs += 0 + "";
             }
             m.setPayload(rs);

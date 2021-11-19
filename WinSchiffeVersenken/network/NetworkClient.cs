@@ -24,7 +24,7 @@ namespace WinSchiffeVersenken
         {
             this.main = main;
             connected = false;
-            client = new SimpleTcpClient("127.0.0.1:9000");
+            client = new SimpleTcpClient("bueroprojekt.ddns.net:1024");
             client.Events.Connected += Events_Connected;
             //client.Events.DataReceived += Events_DataRecieved;
             client.Events.DataReceived += main.DataReceived;
