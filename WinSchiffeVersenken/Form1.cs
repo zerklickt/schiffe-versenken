@@ -12,7 +12,7 @@ namespace WinSchiffeVersenken
         private User me;
         private string namebuffer;
         private string outbuffer = "";
-        private NetworkClient networkClient;
+        internal static NetworkClient networkClient;
 
         public Form1()
         {
@@ -64,6 +64,7 @@ namespace WinSchiffeVersenken
         private void btnClick(object sender, EventArgs e)
         {
             networkClient.sendSerialized(new Message(2, "" + ((Feld)sender).getX() + ";" + ((Feld)sender).getY()));
+            ((Feld)sender).Enabled = false;
             //sp.GetSpielfeld().checkClick((Feld)sender);
             reload();
         }
@@ -94,6 +95,7 @@ namespace WinSchiffeVersenken
                         networkClient.sendSerialized(ml);
                     }
                 }
+                reload();
             }
             else if (m.getType() == 3)
             {
@@ -128,7 +130,18 @@ namespace WinSchiffeVersenken
             else if (m.getType() == 4)
             {
                 outbuffer = "Du hast gewonnen!";
-                button1.PerformClick();
+                //button1.PerformClick();
+            }
+            else if(m.getType() == 5)
+            {
+                if(int.Parse(m.getPayload()) == 1)
+                {
+                    sp.setRechtsEingeloggt(false);
+                } else
+                {
+                    sp.setRechtsEingeloggt(true);
+                }
+                reload();
             }
         }
 
@@ -160,46 +173,14 @@ namespace WinSchiffeVersenken
 
         }
 
-        /*
-        public void reload()
-        {
-            bool t = sp.istLinksEingeloggt();
-            foreach(FeldLinks f in Form1.getPicBoxes())
-            {
-                if (t)
-                {
-                    if(Form1.getButtonsRight()[f.getX(), f.getY()].getShipID() != -1)
-                        f.BackColor = Color.DarkGray;
-                    else
-                        f.BackColor = Color.WhiteSmoke ;
-                }
-            }
-
-            bool u = sp.istLinksEingeloggt();
-            foreach (Feld f in Form1.getButtonsRight())
-            {
-                if (u)
-                {
-                    if (Form1.getPicBoxes()[f.getX(), f.getY()].getShipID() != -1)
-                    {
-                        Schiffe s = sp.getcurrUser().getShips()[Form1.getPicBoxes()[f.getX(), f.getY()].getShipID()];
-                        if (s.istversenkt())
-                        {
-                            f.BackColor = Color.Red;
-                        }
-                    }
-                }
-            }
-        }
-        */
         public void reload()
         {
             Form1.getNameBox().Text = namebuffer;
             if(outbuffer != "")
                 Form1.getLabelOut().Text = outbuffer;
             outbuffer = "";
+            
             bool t = sp.istLinksEingeloggt();
-            /*
             foreach (FeldLinks f in Form1.getPicBoxes())
             {
                 if (f.getStatus() == Status.HIT)
@@ -225,7 +206,6 @@ namespace WinSchiffeVersenken
                         f.BackColor = Color.LightSkyBlue;
                 }
             }
-            */
 
             bool u = sp.istRechtsEingeloggt();
             foreach (Feld f in Form1.getButtonsRight())
@@ -256,8 +236,12 @@ namespace WinSchiffeVersenken
 
         private void buttonConnect_Click(object sender, EventArgs e)
         {
-            if(!networkClient.isConnected())
+            if (!networkClient.isConnected())
+            {
                 networkClient.connect();
+                ((Button)sender).Enabled = false;
+                Form1.getLabelOut().Text = "Verbunden";
+            }
         }
 
         private void buttonSetName_Click(object sender, EventArgs e)

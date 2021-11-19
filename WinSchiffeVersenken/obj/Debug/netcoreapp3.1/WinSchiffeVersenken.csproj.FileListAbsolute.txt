@@ -15,3 +15,4 @@ D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\Wi
 D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.genruntimeconfig.cache
 D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\bin\Debug\netcoreapp3.1\SimpleTcp.dll
 D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.csproj.CopyComplete
+D:\Nick Hoschke\Documents\C Projects\vs\schiffe-versenken\WinSchiffeVersenken\WinSchiffeVersenken\obj\Debug\netcoreapp3.1\WinSchiffeVersenken.csproj.AssemblyReference.cache

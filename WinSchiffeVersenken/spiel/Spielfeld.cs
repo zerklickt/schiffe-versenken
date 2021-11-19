@@ -72,13 +72,26 @@ namespace WinSchiffeVersenken
                 s.istversenktfunct();
                 if (s.istversenkt())
                 {
+                    fl.BackColor = Color.Red;
+                    fl.setStatus(Status.SUNK);
+                    foreach (FeldLinks fd in Form1.getPicBoxes())
+                    {
+                        if (fd.getShipID() == fl.getShipID())
+                        {
+                            fd.setStatus(Status.SUNK);
+                        }
+                    }
                     rs += 2 + "";
                 } else
                 {
+                    fl.BackColor = Color.LightSalmon;
+                    fl.setStatus(Status.HIT);
                     rs += 1 + "";
                 }
             } else
             {
+                fl.BackColor = Color.Blue;
+                fl.setStatus(Status.MISS);
                 rs += "-1;";
                 rs += 0 + "";
             }
@@ -348,15 +361,14 @@ namespace WinSchiffeVersenken
 
             if(amount4s == Settings.SHIPS_4 && amount3s == Settings.SHIPS_3 && amount2s == Settings.SHIPS_2)
             {
-                /*
-                 * 
-                 * Sende Nachricht an Server, dass CLient alle Schiffe gesetzt hat und bereit ist zu spielen.
-                 * 
-                 */
+                Message s = new Message(6, "");
+                Form1.networkClient.sendSerialized(s);
                 sp.setLinksEingeloggt(true);
             }
             return;
         }
+
+
 
         private int counting(int id)
         {
